@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    div(ng-controller='mainCtrl', ng-init='init()')
+        #map-container
+            #map-canvas
+        #map-cover
+        h1 Where to go in {{town}}
+        .container
+            .venues(ng-if='venues')
+                .venue(ng-repeat='venue in venues')
+                    h3 {{venue.name}}
+                    ul.categories
+                        li(ng-repeat='category in venue.categories')
+                            span {{category.name}}
+                    address {{venue.location.address}}
+                .loading-placeholder(ng-if='!venues.length')
+                    p Give us few seconds please. We are looking around to pick the best tips for you.
